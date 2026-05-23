@@ -1002,12 +1002,12 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onLogin, onBack }) => {
                         : 'bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-zinc-700'
                     }`}
                   >
-                    {filter === 'all' && '<span className="hidden sm:inline">За всё время</span><span className="sm:hidden">Всё</span>'}
+                    {filter === 'all' && <><span className="hidden sm:inline">За всё время</span><span className="sm:hidden">Всё</span></>}
                     {filter === 'today' && 'Сегодня'}
-                    {filter === 'week' && '<span className="hidden sm:inline">За неделю</span><span className="sm:hidden">Неделя</span>'}
-                    {filter === 'month' && '<span className="hidden sm:inline">За месяц</span><span className="sm:hidden">Месяц</span>'}
-                    {filter === 'year' && '<span className="hidden sm:inline">За год</span><span className="sm:hidden">Год</span>'}
-                    {filter === 'custom' && '<span className="hidden sm:inline">Выбрать дату</span><span className="sm:hidden">Дата</span>'}
+                    {filter === 'week' && <><span className="hidden sm:inline">За неделю</span><span className="sm:hidden">Неделя</span></>}
+                    {filter === 'month' && <><span className="hidden sm:inline">За месяц</span><span className="sm:hidden">Месяц</span></>}
+                    {filter === 'year' && <><span className="hidden sm:inline">За год</span><span className="sm:hidden">Год</span></>}
+                    {filter === 'custom' && <><span className="hidden sm:inline">Выбрать дату</span><span className="sm:hidden">Дата</span></>}
                   </button>
                 ))}
               </div>
