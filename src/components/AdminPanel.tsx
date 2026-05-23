@@ -375,45 +375,48 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onLogin, onBack }) => {
   return (
     <div className="space-y-6">
       {/* Admin Top Panel */}
-      <div className="bg-gradient-to-r from-purple-900 via-orange-950 to-zinc-900 border border-purple-950 p-6 rounded-3xl shadow-xl text-white flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div className="flex items-center gap-3.5">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-orange-500 flex items-center justify-center text-white text-xl shadow-lg">
+      <div className="bg-gradient-to-r from-purple-900 via-orange-950 to-zinc-900 border border-purple-950 p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-xl text-white flex flex-col md:flex-row md:items-center md:justify-between gap-3 sm:gap-4">
+        <div className="flex items-center gap-2.5 sm:gap-3.5">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-purple-500 to-orange-500 flex items-center justify-center text-white text-lg sm:text-xl shadow-lg flex-shrink-0">
             👑
           </div>
-          <div>
-            <h2 className="text-xl font-black flex items-center gap-2">
-              Административная панель
-              <span className="bg-purple-500 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full tracking-wider">
+          <div className="min-w-0">
+            <h2 className="text-base sm:text-xl font-black flex items-center gap-1.5 sm:gap-2">
+              <span className="truncate">Админ-панель</span>
+              <span className="bg-purple-500 text-[8px] sm:text-[9px] font-extrabold uppercase px-1.5 sm:px-2 py-0.5 rounded-full tracking-wider flex-shrink-0">
                 Director
               </span>
             </h2>
-            <p className="text-xs text-purple-200 mt-0.5">
-              Вы вошли как <span className="font-semibold text-orange-400">{currentUser.fullName}</span>. Управление точками, контроль смен и сквозная аналитика.
+            <p className="text-[10px] sm:text-xs text-purple-200 mt-0.5 truncate">
+              <span className="hidden sm:inline">Вы вошли как </span>
+              <span className="font-semibold text-orange-400">{currentUser.fullName}</span>
             </p>
           </div>
         </div>
 
         <button
           onClick={handleLogout}
-          className="flex items-center justify-center gap-1.5 px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl text-xs transition-colors cursor-pointer self-start md:self-center"
+          className="flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg sm:rounded-xl text-xs transition-colors cursor-pointer self-start md:self-center"
         >
           <LogOut className="w-4 h-4" />
-          Выйти из админки
+          <span className="hidden sm:inline">Выйти из админки</span>
+          <span className="sm:hidden">Выйти</span>
         </button>
       </div>
 
       {/* Admin Navigation Sub-Tabs */}
-      <div className="flex border-b border-gray-200 dark:border-zinc-800 gap-2">
+      <div className="flex border-b border-gray-200 dark:border-zinc-800 gap-2 overflow-x-auto scrollbar-hide pb-1">
         <button
           onClick={() => { setSubTab('active'); setMonitoredPointId(null); }}
-          className={`pb-3 px-4 text-sm font-bold border-b-2 transition-colors flex items-center gap-2 cursor-pointer ${
+          className={`pb-3 px-4 text-sm font-bold border-b-2 transition-colors flex items-center gap-2 cursor-pointer flex-shrink-0 whitespace-nowrap ${
             subTab === 'active'
               ? 'border-orange-500 text-orange-600 dark:text-orange-400'
               : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700'
           }`}
         >
-          <Play className="w-4 h-4" />
-          Открытые смены
+          <Play className="w-4 h-4 flex-shrink-0" />
+          <span className="hidden sm:inline">Открытые смены</span>
+          <span className="sm:hidden">Открытые</span>
           <span className="bg-orange-100 dark:bg-orange-950/50 text-orange-600 dark:text-orange-400 text-xs px-2 py-0.5 rounded-full">
             {Object.keys(activeShifts).length}
           </span>
@@ -421,14 +424,15 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onLogin, onBack }) => {
 
         <button
           onClick={() => { setSubTab('closed'); setSelectedClosedShift(null); }}
-          className={`pb-3 px-4 text-sm font-bold border-b-2 transition-colors flex items-center gap-2 cursor-pointer ${
+          className={`pb-3 px-4 text-sm font-bold border-b-2 transition-colors flex items-center gap-2 cursor-pointer flex-shrink-0 whitespace-nowrap ${
             subTab === 'closed'
               ? 'border-orange-500 text-orange-600 dark:text-orange-400'
               : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700'
           }`}
         >
-          <Archive className="w-4 h-4" />
-          Закрытые смены
+          <Archive className="w-4 h-4 flex-shrink-0" />
+          <span className="hidden sm:inline">Закрытые смены</span>
+          <span className="sm:hidden">Закрытые</span>
           <span className="bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-gray-400 text-xs px-2 py-0.5 rounded-full">
             {closedShifts.length}
           </span>
@@ -436,14 +440,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onLogin, onBack }) => {
 
         <button
           onClick={() => setSubTab('analytics')}
-          className={`pb-3 px-4 text-sm font-bold border-b-2 transition-colors flex items-center gap-2 cursor-pointer ${
+          className={`pb-3 px-4 text-sm font-bold border-b-2 transition-colors flex items-center gap-2 cursor-pointer flex-shrink-0 whitespace-nowrap ${
             subTab === 'analytics'
               ? 'border-orange-500 text-orange-600 dark:text-orange-400'
               : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700'
           }`}
         >
-          <BarChart3 className="w-4 h-4" />
-          Аналитика сети
+          <BarChart3 className="w-4 h-4 flex-shrink-0" />
+          Аналитика
         </button>
       </div>
 
@@ -622,7 +626,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onLogin, onBack }) => {
                 </h3>
 
                 {/* Date Filter selector */}
-                <div className="flex flex-wrap gap-1 bg-gray-50 dark:bg-zinc-950 p-1 rounded-xl border border-gray-100 dark:border-zinc-800">
+                <div className="flex flex-wrap sm:flex-nowrap gap-1 bg-gray-50 dark:bg-zinc-950 p-1 rounded-xl border border-gray-100 dark:border-zinc-800 overflow-x-auto">
                   <button
                     onClick={() => setDateFilter('all')}
                     className={`px-2.5 py-1 text-[10px] font-bold rounded-lg transition-all ${
@@ -825,8 +829,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onLogin, onBack }) => {
                   <div className="space-y-2">
                     <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block">Движение товаров по остаткам</span>
                     
-                    <div className="border border-gray-200 dark:border-zinc-800 rounded-xl overflow-hidden">
-                      <table className="w-full text-left border-collapse text-xs">
+                    <div className="border border-gray-200 dark:border-zinc-800 rounded-xl overflow-x-auto">
+                      <table className="w-full min-w-[300px] text-left border-collapse text-xs">
                         <thead>
                           <tr className="bg-gray-50 dark:bg-zinc-800 font-bold text-gray-600 dark:text-gray-300">
                             <th className="p-2.5">Товар</th>
@@ -984,27 +988,29 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onLogin, onBack }) => {
         <div className="space-y-6">
           {/* Date Filter */}
           <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-4 rounded-2xl shadow-sm">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="text-sm font-bold text-gray-700 dark:text-gray-300">Период:</span>
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+              <span className="text-xs sm:text-sm font-bold text-gray-700 dark:text-gray-300">Период:</span>
 
-              {(['all', 'today', 'week', 'month', 'year', 'custom'] as const).map((filter) => (
-                <button
-                  key={filter}
-                  onClick={() => setAnalyticsFilter(filter)}
-                  className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${
-                    analyticsFilter === filter
-                      ? 'bg-orange-500 text-white shadow-md'
-                      : 'bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-zinc-700'
-                  }`}
-                >
-                  {filter === 'all' && 'За всё время'}
-                  {filter === 'today' && 'Сегодня'}
-                  {filter === 'week' && 'За неделю'}
-                  {filter === 'month' && 'За месяц'}
-                  {filter === 'year' && 'За год'}
-                  {filter === 'custom' && 'Выбрать дату'}
-                </button>
-              ))}
+              <div className="flex flex-wrap gap-2">
+                {(['all', 'today', 'week', 'month', 'year', 'custom'] as const).map((filter) => (
+                  <button
+                    key={filter}
+                    onClick={() => setAnalyticsFilter(filter)}
+                    className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                      analyticsFilter === filter
+                        ? 'bg-orange-500 text-white shadow-md'
+                        : 'bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-zinc-700'
+                    }`}
+                  >
+                    {filter === 'all' && '<span className="hidden sm:inline">За всё время</span><span className="sm:hidden">Всё</span>'}
+                    {filter === 'today' && 'Сегодня'}
+                    {filter === 'week' && '<span className="hidden sm:inline">За неделю</span><span className="sm:hidden">Неделя</span>'}
+                    {filter === 'month' && '<span className="hidden sm:inline">За месяц</span><span className="sm:hidden">Месяц</span>'}
+                    {filter === 'year' && '<span className="hidden sm:inline">За год</span><span className="sm:hidden">Год</span>'}
+                    {filter === 'custom' && '<span className="hidden sm:inline">Выбрать дату</span><span className="sm:hidden">Дата</span>'}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Custom Date Range */}
@@ -1042,55 +1048,55 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onLogin, onBack }) => {
           </div>
 
           {/* Key Metrics Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {/* Revenue */}
-            <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-2xl shadow-sm flex items-center justify-between">
-              <div>
-                <span className="text-[10px] text-gray-400 font-bold uppercase block tracking-wider">Общая выручка</span>
-                <span className="text-2xl font-black text-orange-600 dark:text-orange-400 block mt-1">
+            <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-3 sm:p-5 rounded-2xl shadow-sm flex items-center justify-between">
+              <div className="min-w-0">
+                <span className="text-[9px] sm:text-[10px] text-gray-400 font-bold uppercase block tracking-wider truncate">Общая выручка</span>
+                <span className="text-lg sm:text-2xl font-black text-orange-600 dark:text-orange-400 block mt-1 truncate">
                   {analytics.totalRev.toLocaleString()} ₽
                 </span>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500 text-lg">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500 text-base sm:text-lg flex-shrink-0">
                 ₽
               </div>
             </div>
 
             {/* Orders */}
-            <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-2xl shadow-sm flex items-center justify-between">
-              <div>
-                <span className="text-[10px] text-gray-400 font-bold uppercase block tracking-wider">Всего заказов</span>
-                <span className="text-2xl font-black text-gray-800 dark:text-gray-100 block mt-1">
+            <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-3 sm:p-5 rounded-2xl shadow-sm flex items-center justify-between">
+              <div className="min-w-0">
+                <span className="text-[9px] sm:text-[10px] text-gray-400 font-bold uppercase block tracking-wider truncate">Всего заказов</span>
+                <span className="text-lg sm:text-2xl font-black text-gray-800 dark:text-gray-100 block mt-1 truncate">
                   {analytics.totalOrders} шт.
                 </span>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-500 text-lg">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-500 text-base sm:text-lg flex-shrink-0">
                 🛒
               </div>
             </div>
 
             {/* Average Ticket */}
-            <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-2xl shadow-sm flex items-center justify-between">
-              <div>
-                <span className="text-[10px] text-gray-400 font-bold uppercase block tracking-wider">Средний чек</span>
-                <span className="text-2xl font-black text-emerald-600 dark:text-emerald-400 block mt-1">
+            <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-3 sm:p-5 rounded-2xl shadow-sm flex items-center justify-between">
+              <div className="min-w-0">
+                <span className="text-[9px] sm:text-[10px] text-gray-400 font-bold uppercase block tracking-wider truncate">Средний чек</span>
+                <span className="text-lg sm:text-2xl font-black text-emerald-600 dark:text-emerald-400 block mt-1 truncate">
                   {analytics.totalOrders > 0 ? Math.round(analytics.totalRev / analytics.totalOrders).toLocaleString() : 0} ₽
                 </span>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 text-lg">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 text-base sm:text-lg flex-shrink-0">
                 📊
               </div>
             </div>
 
             {/* Active Points Count */}
-            <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-2xl shadow-sm flex items-center justify-between">
-              <div>
-                <span className="text-[10px] text-gray-400 font-bold uppercase block tracking-wider">Всего точек</span>
-                <span className="text-2xl font-black text-purple-600 dark:text-purple-400 block mt-1">
+            <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-3 sm:p-5 rounded-2xl shadow-sm flex items-center justify-between">
+              <div className="min-w-0">
+                <span className="text-[9px] sm:text-[10px] text-gray-400 font-bold uppercase block tracking-wider truncate">Всего точек</span>
+                <span className="text-lg sm:text-2xl font-black text-purple-600 dark:text-purple-400 block mt-1 truncate">
                   {points.length} точек
                 </span>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-500 text-lg">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-500 text-base sm:text-lg flex-shrink-0">
                 🏪
               </div>
             </div>
