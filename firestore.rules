@@ -1,0 +1,40 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Правила для точек продаж
+    match /points/{pointId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Правила для активных смен
+    match /activeShifts/{shiftId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Правила для закрытых смен
+    match /closedShifts/{shiftId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Правила для заказов
+    match /orders/{orderId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Правила для расписания
+    match /schedule/{slotId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Правила для пользователей
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}
