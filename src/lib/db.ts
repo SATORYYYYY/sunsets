@@ -1058,6 +1058,7 @@ class SunsetDB {
             pointId: point.id,
             pointName: point.name,
             employees: [],
+            employeeTimes: {},
             weekNumber: week
           });
           count++;
@@ -1218,6 +1219,7 @@ class SunsetDB {
             pointId: point.id,
             pointName: point.name,
             employees: [],
+            employeeTimes: {},
             weekNumber: nextWeekNumber
           };
 
@@ -1264,6 +1266,7 @@ class SunsetDB {
             pointId: point.id,
             pointName: point.name,
             employees: [],
+            employeeTimes: {},
             weekNumber: week
           };
           newSlots.push(slot);
